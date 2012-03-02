@@ -9,7 +9,14 @@
     Manufacturer="Example" 
     UpgradeCode="31e395ff-4024-45d1-a78c-0eb8d5874e66"
   >
-    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+    <BootstrapperApplicationRef Id="ManagedBootstrapperApplicationHost">
+      <Payload Name="BootstrapperCore.config" SourceFile="..\SampleApp.BA\bin\$(var.BUILD)\SampleBA.BootstrapperCore.config" />
+
+      <Payload SourceFile="..\SampleApp.BA\bin\$(var.BUILD)\SampleApp.BA.dll" />
+      <Payload SourceFile="..\SampleApp.BA\bin\$(var.BUILD)\Caliburn.Micro.dll" />
+      <Payload SourceFile="..\SampleApp.BA\bin\$(var.BUILD)\System.Windows.Interactivity.dll" />
+      <Payload SourceFile="..\SampleApp.BA\bin\$(var.BUILD)\Autofac.dll" />
+    </BootstrapperApplicationRef>
 
     <Chain>
 
