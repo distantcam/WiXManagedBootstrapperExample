@@ -1,0 +1,9 @@
+bin
+obj
+Packages
+
+*.suo
+*.user
+*.dat
+
+_Resharper*
