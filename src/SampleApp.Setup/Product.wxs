@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix 
+  xmlns="http://schemas.microsoft.com/wix/2006/wi"
+  xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+>
+
+  <?define VERSION="!(bind.FileVersion.SampleApp.exe)"?>
+  <?define PRODUCTPATH="..\SampleApp\bin\$(var.BUILD)\SampleApp.exe"?>
+
+  <Product 
+    Id="*" 
+    Name="Sample App" 
+    Language="1033" 
+    Version="$(var.VERSION)" 
+    Manufacturer="Example" 
+    UpgradeCode="bc676483-7676-4763-bdf2-2e2ad9b2b275"
+  >
+    
+    <Package 
+      Description="Sample App"
+      Manufacturer="Example"
+      InstallerVersion="200" 
+      Compressed="yes" 
+      InstallPrivileges="limited"
+      InstallScope="perUser" 
+    />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Icon Id="Icon.exe" SourceFile="$(var.PRODUCTPATH)" />
+    <Property Id="ARPPRODUCTICON" Value="Icon.exe" />
+    <Property Id="ARPHELPLINK" Value="http://www.example.com/" />
+
+    <Feature Id="ProductFeature" Title="SampleApp" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="LocalAppDataFolder">
+        <Directory Id="INSTALLFOLDER" Name="SampleApp" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="7C02DD60-20F3-4166-B4B8-F082627D8BCC">
+
+        <RegistryKey Root="HKCU" Key="Software\Example\SampleApp">
+          <RegistryValue Name="Version" Value="[ProductVersion]" Type="string" KeyPath="yes" />
+        </RegistryKey>
+
+        <CreateFolder />
+        <RemoveFolder Id="RemoveAppRootDirectory" On="uninstall" />
+
+        <File Id="SampleApp.exe" Source="$(var.PRODUCTPATH)">
+          <netfx:NativeImage Id="ngen_SampleApp.exe" Priority="0" AppBaseDirectory="INSTALLFOLDER" />
+        </File>
+
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
