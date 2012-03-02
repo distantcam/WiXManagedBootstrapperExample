@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix 
+  xmlns="http://schemas.microsoft.com/wix/2006/wi"
+>
+
+  <Bundle 
+    Name="SampleApp" 
+    Version="1.0.0.0" 
+    Manufacturer="Example" 
+    UpgradeCode="31e395ff-4024-45d1-a78c-0eb8d5874e66"
+  >
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+
+    <Chain>
+
+      <PackageGroupRef Id="Netfx4Full" />
+
+      <MsiPackage
+        Id="SampleApp"
+        Cache="no"
+        Compressed="no"
+        Vital="yes"
+        Name="SampleApp.Setup.msi"
+        SourceFile="..\SampleApp.Setup\bin\$(var.BUILD)\SampleApp.Setup.msi"
+      />
+
+    </Chain>
+  </Bundle>
+</Wix>
