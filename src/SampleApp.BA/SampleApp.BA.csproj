@@ -48,6 +48,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PropertyChanged">
+      <HintPath>..\..\packages\PropertyChanged.Fody.1.11.0.0\Lib\NET\PropertyChanged.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -57,8 +60,15 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analects\XAMLConverters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Analects\XAMLConverters\DebugConverter.cs" />
+    <Compile Include="Analects\XAMLConverters\MarkupConverter.cs" />
+    <Compile Include="Analects\XAMLConverters\NullToVisibilityConverter.cs" />
+    <Compile Include="Analects\XAMLConverters\ToLowerConverter.cs" />
+    <Compile Include="Analects\XAMLConverters\ToUpperConverter.cs" />
     <Compile Include="CaliburnMicroBootstrapper.cs" />
     <Compile Include="SampleBootstrapperApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,4 +96,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="$(SolutionDir)\Tools\Fody\Fody.targets" />
 </Project>

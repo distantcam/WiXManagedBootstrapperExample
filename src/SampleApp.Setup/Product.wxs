@@ -13,16 +13,16 @@
     Language="1033" 
     Version="$(var.VERSION)" 
     Manufacturer="Example" 
-    UpgradeCode="bc676483-7676-4763-bdf2-2e2ad9b2b275"
+    UpgradeCode="44a869b4-5dd4-44b0-938b-399f41611658"
   >
-    
+    <!-- WiX currently has a bug which means that a perUser install will fail. -->
+    <!-- To fix this for now the InstallScope is set to perMachine. -->
     <Package 
       Description="Sample App"
       Manufacturer="Example"
       InstallerVersion="200" 
       Compressed="yes" 
-      InstallPrivileges="limited"
-      InstallScope="perUser" 
+      InstallScope="perMachine" 
     />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -47,7 +47,7 @@
 
   <Fragment>
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="ProductComponent" Guid="7C02DD60-20F3-4166-B4B8-F082627D8BCC">
+      <Component Id="ProductComponent" Guid="262eca3a-9ab0-4706-ab39-55c89819506a">
 
         <RegistryKey Root="HKCU" Key="Software\Example\SampleApp">
           <RegistryValue Name="Version" Value="[ProductVersion]" Type="string" KeyPath="yes" />
