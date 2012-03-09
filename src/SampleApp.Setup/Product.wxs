@@ -15,14 +15,12 @@
     Manufacturer="Example" 
     UpgradeCode="44a869b4-5dd4-44b0-938b-399f41611658"
   >
-    <!-- WiX currently has a bug which means that a perUser install will fail. -->
-    <!-- To fix this for now the InstallScope is set to perMachine. -->
     <Package 
       Description="Sample App"
       Manufacturer="Example"
       InstallerVersion="200" 
       Compressed="yes" 
-      InstallScope="perMachine" 
+      InstallScope="perUser" 
     />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

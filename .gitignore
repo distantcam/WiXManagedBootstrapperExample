@@ -7,3 +7,5 @@ Packages
 *.dat
 
 _Resharper*
+
+src/SampleApp.Bootstrapper/dotNetFx40_Full_x86_x64.exe
